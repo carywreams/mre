@@ -16,12 +16,14 @@ class mre0000 {
 
     private array|false $items;
     private PDO $dbh;
-    private PDOStatement|false $sth;
+    private PDOStatement $sth;
 
     public function __construct() {
         try {
             $this->dbh = new PDO('mysql:host=localhost;dbname=mre_database', 'mre_user', 'mre_password');
-            $this->sth = $this->dbh->prepare("SELECT * from month");
+            if ($possiblyTruthyPDOStatement = $this->dbh->prepare("SELECT * from month")) {
+                $this->sth = $possiblyTruthyPDOStatement;
+            }
         } catch (PDOException | Exception $e) {
             print_r($e);
         }

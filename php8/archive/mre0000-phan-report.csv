@@ -1,0 +1,2 @@
+filename,line,severity_ord,severity_name,category,check_name,message
+focus/mre0000.php,46,5,normal,TypeError,PhanPossiblyFalseTypeArgumentInternal,"Argument 1 ($value) is $this->items of type array|false but \count() takes \Countable|\ResourceBundle|\SimpleXMLElement|array (false is incompatible)"
