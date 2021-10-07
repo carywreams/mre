@@ -1,7 +1,13 @@
 <?php
 
 /**
- * 20211006: PhanPossiblyFalseTypeArgumentInternal
+ * 20211006
+ * Reported: https://github.com/phan/phan/issues/4569
+ * 
+ * 20211007
+ * Resolved: https://github.com/phan/phan/commit/67775dc17877ec9bbcf7005ad3a51c5621f17381
+ *
+ * concerned with reporting of PhanPossiblyFalseTypeArgumentInternal
  * PDOStatement::fetchAll()
  *  >= 8.0.0 always returns an array
  *  <  8.0.0 could return a falsy value or an array of results
