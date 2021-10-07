@@ -317,7 +317,7 @@ return [
     //
     // (e.g. `['xdebug' => '.phan/internal_stubs/xdebug.phan_php']`)
     'autoload_internal_extension_signatures' => [
-        'pdo' =>  '.phan/internal_stubs/PDO.phan_php'
+        // 'pdo' =>  '.phan/internal_stubs/PDO.phan_php'
     ],
     // A list of plugin files to execute.
     //

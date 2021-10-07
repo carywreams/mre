@@ -1,0 +1,6 @@
+filename,line,severity_ord,severity_name,category,check_name,message
+focus/fetchAll_PhanPossiblyFalseTypeArgumentInternal.php,28,5,normal,TypeError,PhanPossiblyNonClassMethodCall,"Call to method execute on type \PDOStatement|false that could be a non-object"
+focus/fetchAll_PhanPossiblyFalseTypeArgumentInternal.php,31,5,normal,TypeError,PhanPossiblyNonClassMethodCall,"Call to method fetchAll on type \PDOStatement|false that could be a non-object"
+focus/fetchAll_PhanPossiblyFalseTypeArgumentInternal.php,35,5,normal,TypeError,PhanPossiblyNonClassMethodCall,"Call to method execute on type \PDOStatement|false that could be a non-object"
+focus/fetchAll_PhanPossiblyFalseTypeArgumentInternal.php,36,5,normal,TypeError,PhanPossiblyNonClassMethodCall,"Call to method fetchAll on type \PDOStatement|false that could be a non-object"
+focus/fetchAll_PhanPossiblyFalseTypeArgumentInternal.php,38,5,normal,TypeError,PhanPossiblyFalseTypeArgumentInternal,"Argument 1 ($value) is $this->items of type array|false but \count() takes \Countable|\ResourceBundle|\SimpleXMLElement|array (false is incompatible)"
