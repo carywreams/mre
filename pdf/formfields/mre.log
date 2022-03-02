@@ -1,0 +1,62 @@
+[------------------------------------------------------------------------------]
+[ PDFlib 9.3.1  PHP8 binding on Linux-x86_64 (le) 2022-03-02 16:55:39          ]
+[ Classes: api=1 warning=1                                                     ]
+[ Enter in vi to compile it:                                                   ]
+[ %s/)$/);/g   and   %s/"(NULL)"/NULL/g   and   %s/\[[^]]*\]//g                ]
+[ Program should run on a little-endian platform                               ]
+[------------------------------------------------------------------------------]
+
+PDF_set_option(p_0x7f7dc1697000, "errorpolicy=exception")
+
+PDF_set_option(p_0x7f7dc1697000, "stringformat=utf8")
+
+PDF_set_option(p_0x7f7dc1697000, "SearchPath={  {../fonts}  }")
+[New category:resource "SearchPath:/usr/local/PDFlib"]
+[New category:resource "SearchPath:/usr/local/PDFlib/PDFlib"]
+[New category:resource "SearchPath:/usr/local/PDFlib/PDFlib/9.3"]
+[New category:resource "SearchPath:/usr/local/PDFlib/PDFlib/9.3/resource/cmap"]
+[New category:resource "SearchPath:/usr/local/PDFlib/PDFlib/9.3/resource/codelist"]
+[New category:resource "SearchPath:/usr/local/PDFlib/PDFlib/9.3/resource/fonts"]
+[New category:resource "SearchPath:/usr/local/PDFlib/PDFlib/9.3/resource/glyphlst"]
+[New category:resource "SearchPath:/usr/local/PDFlib/PDFlib/9.3/resource/icc"]
+[New category:resource "SearchPath:/home/creams/PDFlib"]
+[New category:resource "SearchPath:/home/creams/PDFlib/PDFlib"]
+[New category:resource "SearchPath:/home/creams/PDFlib/PDFlib/9.3"]
+[New category:resource "SearchPath:/home/creams/PDFlib/PDFlib/9.3/resource/cmap"]
+[New category:resource "SearchPath:/home/creams/PDFlib/PDFlib/9.3/resource/codelist"]
+[New category:resource "SearchPath:/home/creams/PDFlib/PDFlib/9.3/resource/fonts"]
+[New category:resource "SearchPath:/home/creams/PDFlib/PDFlib/9.3/resource/glyphlst"]
+[New category:resource "SearchPath:/home/creams/PDFlib/PDFlib/9.3/resource/icc"]
+[New category:resource "SearchPath:../fonts"]
+
+
+PDF_begin_document(p_0x7f7dc1697000, "", /*c*/0, "tempdirname /usr/tmp masterpassword=djflhdsjfhlsjfhlkjdsa permissions={nomodify} compatibility=1.7ext8  optimize=true inmemory=true viewerpreferences={printscaling none}")
+[Begin document #1]
+[1]
+PDF_set_option(p_0x7f7dc1697000, "FontOutline={NotoSerif-Regular=NotoSerif-Regular.ttf}")
+[New category:resource "FontOutline:NotoSerif-Regular = NotoSerif-Regular.ttf"]
+
+PDF_load_font(p_0x7f7dc1697000, "NotoSerif-Regular", /*c*/0, "winansi", "simplefont embedding nosubsetting")
+[1]
+
+PDF_begin_page_ext(p_0x7f7dc1697000, 612.000000, 792.000000, "")
+[Begin page #1]
+PDF_create_field(p_0x7f7dc1697000, 72.000000, 200.000000, 272.000000, 280.000000, "firstbox", /*c*/8, "textfield", "tooltip={Enter your response here} bordercolor={gray 0} multiline=true fontsize=auto font=1")
+[Begin template 0]
+[End template 0]
+PDF_create_field(p_0x7f7dc1697000, 65.000000, 320.000000, 265.000000, 400.000000, "secondbox", /*c*/9, "textfield", "tooltip={Enter your response here} bordercolor={gray 0} multiline=true fontsize=auto font=1")
+[Begin template 1]
+[End template 1]
+PDF_end_page_ext(p_0x7f7dc1697000, "")
+[End page #1]
+
+PDF_end_document(p_0x7f7dc1697000, "")
+[Full product name: "PDFlib Personalization Server"]
+[Document ID: <ABC17A7457C1A811C0AC7A6AD9AF99EE> <ABC17A7457C1A811C0AC7A6AD9AF99EE>]
+[Document ID: <ABC17A7457C1A811C0AC7A6AD9AF99EE> <ABC17A7457C1A811C0AC7A6AD9AF99EE>]
+[End document #1]
+
+PDF_get_buffer(p_0x7f7dc1697000, &size_0x7fff1b7dc7f8)
+[0x7f7dbee01000, size=274987]
+PDF_delete(p_0x7f7dc1697000)
+[2022-03-02 16:55:40]
