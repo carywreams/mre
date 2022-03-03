@@ -10,26 +10,22 @@ $outfilename = "";
 try {
   $p = new PDFlib();
 
-  $p->set_option('logging={filename=./mre.log classes={api=1 warning=1}}');
-  /* This means we must check return values of load_font() etc. */
-  $p->set_option("errorpolicy=exception");
-  /* all strings are expected as utf8 */
-  $p->set_option("stringformat=utf8");
+  $p->set_option('logging={filename=./mre.log classes={api=1 warning=2}}');
+  $p->set_option("errorpolicy=return");
   $p->set_option( "SearchPath={  {../fonts}  }");
 
-
-  /*
-* Prevent changes with a master password.
-* Linearize with inmemory=true to avoid creation of temporary files on
-* disk.
-*/
-
-  //    $optlist = "compatibility=1.7ext8 optimize inmemory=true masterpassword=pdflib permissions={nomodify}";
-  $optlist = "tempdirname /usr/tmp masterpassword=djflhdsjfhlsjfhlkjdsa permissions={nomodify} compatibility=1.7ext8  optimize=true inmemory=true viewerpreferences={printscaling none}";
+  // original optlist:
+  // $optlist = "tempdirname /usr/tmp masterpassword=masterpassword permissions={nomodify} compatibility=1.7ext8  optimize=true inmemory=true viewerpreferences={printscaling none}";
+  
+  // REQUIRED FOR MRE: optimize = true must be present.
+  // remove this option and the problem is NOT reproducible
+  //
+  $optlist = "optimize=true ";
   if ($p->begin_document($outfilename, $optlist) == 0) {
     die("Error: " . $p->get_errmsg());
   }
 
+  // using a font outline makes no difference for this issue
   $p->set_option("FontOutline={NotoSerif-Regular=NotoSerif-Regular.ttf}");
   $font = $p->load_font("NotoSerif-Regular", "winansi","simplefont embedding nosubsetting");
   if ($font == 0) {
@@ -42,8 +38,16 @@ try {
 
   $optlist = "tooltip={Enter your response here} " .
     "bordercolor={gray 0} multiline=true fontsize=auto font=" . $font;
-  $p->create_field(72,200,272,280, "firstbox", "textfield", $optlist);
-  $p->create_field(65,320,265,400, "secondbox", "textfield", $optlist);
+  
+  // REQUIRED FOR MRE: dimensions of the two boxes must match
+  // a difference of as little as 1 point in either width or height will hide the issue
+  $width = 200;
+  $height = 80;
+  $llx0 = 72; $lly0 = 200;
+  $llx1 = 65; $lly1 = 320;
+
+  $p->create_field($llx0,$lly0,$llx0 + $width,$lly0 + $height, "firstbox", "textfield", $optlist);
+  $p->create_field($llx1,$lly1,$llx1 + $width,$lly1 + $height, "secondbox", "textfield", $optlist);
 
   $p->end_page_ext("");
 
@@ -51,11 +55,9 @@ try {
 
   $buf = $p->get_buffer();
   $len = strlen($buf);
-  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-  header("Pragma: public");
   header("Content-Length: $len");
   header("Content-type: application/octet-stream");
-  header("Content-Disposition: attachment; filename=mre-fn.pdf");
+  header("Content-Disposition: attachment; filename=mre.pdf");
   print $buf;
 
 }

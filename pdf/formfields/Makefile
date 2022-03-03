@@ -5,7 +5,7 @@ mre.pdf: mre.php
 all: clean mre.pdf
 
 clean:
-	rm -rf mre.pdf 
+	rm -rf mre.pdf mre.log
 
 .PHONY: clean all
 
