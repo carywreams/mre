@@ -1,3 +1,3 @@
-# REAMDE
+# README
 
-+ STep 1
++ Step 2
