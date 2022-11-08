@@ -1,0 +1,72 @@
+---
+title: "Exploring DAT File Formatting Issue"
+subtitle: "tidyverse mre 00"
+author: Cary W Reams
+date: "`r Sys.Date()`"
+monofont: DejaVu Sans Mono
+mainfont: Noto Sans Regular
+sansfont: Noto Sans Regular
+fontsize: 12pt
+pagestyle: fancy
+geometry: "top=1.0in, bottom=1.0in, left=0.75in, right=0.75in"
+output:
+  pdf_document:
+    template: template.tex
+    includes:
+      in_header: header.tex
+    latex_engine: xelatex
+    toc: no
+    toc_depth: 1
+    number_sections: yes
+---
+
+# SRC - Good
+
+```{r echo = FALSE, warning = FALSE }
+suppressMessages(library(tidyverse))
+suppressMessages(library(gt))
+suppressMessages(library(glue))
+suppressMessages(library(ggplot2, warn.conflicts = FALSE))
+suppressMessages(library(kableExtra,warn.conflicts = FALSE))
+suppressMessages(library(knitr, warn.conflicts = FALSE))
+src_data <- read.csv('src-good.dat',sep='|',header=TRUE)
+# png('dst.png',width=1200,height=800)
+ggplot(data=src_data,aes(x=format(as.Date(record_date),"%W"),y=var_0)) +
+  geom_col() +
+  facet_wrap(~category,ncol=2,drop=FALSE) +
+  ggtitle('ggtitle') +
+  xlab('Week Number') +
+  ylab('var_0')
+# dev.off()
+```
+
+## Data Frame
+
+```{r warning = FALSE }
+src_data
+```
+
+# SRC - Bad
+
+```{r echo = FALSE, warning = FALSE }
+# stringsAsFactors=TRUE had no effect
+# stringsAsFactors=FALSE had no effect
+# as.is=1 had no effect; '1' is a column number (0-based cat column number)
+# as.is=2 had no effect; '2' is a column number (1-based cat column number)
+# strip.white fixed the problem
+src_data <- read.csv('src-bad.dat',sep='|',header=TRUE, strip.white=TRUE)
+# png('dst.png',width=1200,height=800)
+ggplot(data=src_data,aes(x=format(as.Date(record_date),"%W"),y=var_0)) +
+  geom_col() +
+  facet_wrap(~category,ncol=2,drop=FALSE) +
+  ggtitle('ggtitle') +
+  xlab('Week Number') +
+  ylab('var_0')
+# dev.off()
+```
+
+## Data Frame
+
+```{r warning = FALSE }
+src_data
+```
