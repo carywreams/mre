@@ -1,4 +1,4 @@
--- my approach with blank line between END and final delimiter at EOF
+-- my approach: delimiter first and last; add END statement
 delimiter $$
 
 DROP Procedure IF EXISTS `Test`$$

@@ -1,3 +1,4 @@
+-- add nonsensical delimiter statement to move away from double dollar
 delimiter DLMTR184
 
 DROP Procedure IF EXISTS `Test` DLMTR184

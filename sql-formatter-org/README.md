@@ -60,3 +60,23 @@ had to remove these config entries after upgrading to sql-formatter v15.0.2
 currently using only two config options to specify my selection of mysql for
 both the language and dialect options. Other than that, the default
 sql-formatter options are being used.
+
+
+## Results
+
+### Interim
+
+Only ``before_03`` passes unscathed through sql-formatter
+
+
+```
+cwr@x1g11:[sql-formatter-org]$ mysql inpowering_packet < interim_00.sql
+1
+1
+ERROR 1064 (42000) at line 5: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELIMITER' at line 1
+cwr@x1g11:[sql-formatter-org]$ mysql inpowering_packet < interim_01.sql
+ERROR 1064 (42000) at line 3: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 1
+cwr@x1g11:[sql-formatter-org]$ mysql inpowering_packet < interim_02.sql
+ERROR 1064 (42000) at line 3: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 1
+cwr@x1g11:[sql-formatter-org]$ mysql inpowering_packet < interim_03.sql
+```

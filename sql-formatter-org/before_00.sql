@@ -1,4 +1,4 @@
--- original reported complaint
+-- original reported example
 
 DROP Procedure IF EXISTS `Test`;
 
