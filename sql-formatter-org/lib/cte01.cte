@@ -1,0 +1,7 @@
+
+cte01 (
+    `cte00_date`
+)
+as (
+    select DATE(NOW())
+)

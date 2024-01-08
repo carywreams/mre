@@ -1,0 +1,7 @@
+
+cte00 (
+    `cte00_time`
+)
+as (
+    select TIME(NOW())
+)

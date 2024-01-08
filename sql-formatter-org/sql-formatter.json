@@ -1,4 +1,5 @@
 {
   "language": "mysql",
-  "dialect": "mysql"
+  "dialect": "mysql",
+  "indentStyle": "tabularLeft"
 }

@@ -1,10 +1,24 @@
--- my approach: delimiter first and last; add END statement
+
+#include NOTICE
+
 delimiter $$
 
-DROP Procedure IF EXISTS `Test`$$
+drop procedure if exists before_01 $$
 
-CREATE /* DEFINER=`zeugnis_nm_dev`@`localhost` */ PROCEDURE `Test`()
-    NO SQL
-Select 1;
-END $$
+create procedure before_01()
+begin
+    with
+    #include cte00.cte
+    ,
+    #include cte01.cte
+
+    select
+        cte00.*,
+        cte01.*
+
+    from cte00
+    join cte01;
+
+end $$
+
 delimiter ;
