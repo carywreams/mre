@@ -1,4 +1,5 @@
--- original reported example
+-- original reported example (FAILS)
+-- after version: FAILS
 
 DROP Procedure IF EXISTS `Test`;
 

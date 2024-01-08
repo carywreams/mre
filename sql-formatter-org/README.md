@@ -37,7 +37,6 @@ delimiter ;
 ## Filenames and Purposes
 
 +   ``before`` series files capture originally authored input to be formatted
-+   ``interim`` series files capture sql-formatter output
 +   ``after`` series files capture my sed-manipulated sql-formatter output attempting to correct for delimiter usage
 
 
@@ -47,36 +46,20 @@ delimiter ;
 +   lines using delimiters _other than_ `;` will be combined with the next line of source
 +   the effect of combining lines by sql-formatter can be seen in the interim files
 
-
-## CONFIG Changes
-
-had to remove these config entries after upgrading to sql-formatter v15.0.2
-
-```
-  "commaPosition": "after",
-  "tabulateAlias": true,
-```
-
-currently using only two config options to specify my selection of mysql for
-both the language and dialect options. Other than that, the default
-sql-formatter options are being used.
-
-
 ## Results
 
-### Interim
++   after initial panic, discovered my workflow (``before_01``) was unaffected by new version of sql-formatter
++   problems appear related to use of __BEGIN__..__END__ for a compound statement
++   reported failure (``before_00``) has only the __BEGIN__ keyword.
++   experimented with variants of failure in versions ``_02`` to ``_05`` which appear, to my satisfaction, to point to practice around use of __BEGIN__ and __END__
 
-Only ``before_03`` passes unscathed through sql-formatter
+## Conclusion
 
+Either of two mods to the original (00) report may address the issue, _in my environment._
 
-```
-cwr@x1g11:[sql-formatter-org]$ mysql inpowering_packet < interim_00.sql
-1
-1
-ERROR 1064 (42000) at line 5: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELIMITER' at line 1
-cwr@x1g11:[sql-formatter-org]$ mysql inpowering_packet < interim_01.sql
-ERROR 1064 (42000) at line 3: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 1
-cwr@x1g11:[sql-formatter-org]$ mysql inpowering_packet < interim_02.sql
-ERROR 1064 (42000) at line 3: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 1
-cwr@x1g11:[sql-formatter-org]$ mysql inpowering_packet < interim_03.sql
-```
+1. as in ``before_04``, moving the delimiter statement to the beginning and including within its scope the ``drop procedure...`` statement, or
+1. as in ``before_03``, converting from a simple statement to a compound statement
+
+either way, the key appears to be making the delimiter declaration earlier and including the ``drop procedure`` statement.
+Essentially, I think that means making an alternative delimiter apply to the _entire file_ as a practice, rather than use
+SQL's flexibility to switch back-and-forth on-the-fly.
